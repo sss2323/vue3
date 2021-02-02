@@ -1,7 +1,9 @@
 <template>
+      <teleport to="#modal">
     <div id="center">
-<h2>快乐星球</h2>
+        <h2>快乐星球</h2>
     </div>
+      </teleport>
 </template>
 
 <script lang="ts">
