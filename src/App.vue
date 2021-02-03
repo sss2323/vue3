@@ -7,7 +7,8 @@
      <img v-if="loaded" :src="result.imgUrl" />
      <Suspense>  
        <template #default>
-         <AsyncShow />
+         <!-- <AsyncShow /> -->
+         <girl-show />
        </template>
        <template #fallback>loading</template>
      </Suspense>
@@ -15,13 +16,22 @@
 </template>
 <script lang="ts">
 //Suspense 异步组件
+import {onErrorCaptured} from 'vue'
 import useUrlAxios from './hooks/useURLAxios'
 import modal from './components/Modal.vue'
-import AsyncShow from './components/AsyncShoe.vue'
+// import AsyncShow from './components/AsyncShow.vue'
+import GirlShow from './components/GirlShow.vue'
 export default {
   name: 'App',
-  components: {modal,AsyncShow},
+  components: {
+    modal,
+  // AsyncShow,
+  GirlShow},
   setup(){
+    onErrorCaptured((error)=>{
+console.log(`error = >`,error);
+return true
+    })
 const {result,loading,loaded,error} = useUrlAxios("https://apiblog.jspang.com/default/getGirl");
 
 return{result,loading,loaded,error}
